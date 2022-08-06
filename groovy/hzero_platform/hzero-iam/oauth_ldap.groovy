@@ -22,7 +22,7 @@ databaseChangeLog(logicalFilePath: 'script/db/oauth_ldap.groovy') {
             column(name: "use_ssl", type: "bigint",   defaultValue:"0",   remarks: "使用ssl加密传输方式，默认情况为不使用")  {constraints(nullable:"false")}  
             column(name: "is_enabled", type: "bigint",   defaultValue:"1",   remarks: "是否启用，默认为启用")  {constraints(nullable:"false")}  
             column(name: "base_dn", type: "varchar(" + 255 * weight + ")",  remarks: "基础DN")   
-            column(name: "DIRECTORY_TYPE", type: "varchar(" + 64 * weight + ")",  remarks: "")  {constraints(nullable:"false")}  
+            column(name: "directory_type", type: "varchar(" + 64 * weight + ")",  remarks: "")  {constraints(nullable:"false")}
             column(name: "object_class", type: "varchar(" + 64 * weight + ")",  remarks: "对象类型")  {constraints(nullable:"false")}  
             column(name: "login_name_field", type: "varchar(" + 64 * weight + ")",  remarks: "login_name对应的字段名")   
             column(name: "real_name_field", type: "varchar(" + 64 * weight + ")",  remarks: "real_name对应的字段名")   
@@ -40,25 +40,25 @@ databaseChangeLog(logicalFilePath: 'script/db/oauth_ldap.groovy') {
     }
 
     changeSet(author: 'hzero@hand-china.com', id: '2019-04-25-oauth-ldap-add-column') {
-        addColumn(tableName: 'OAUTH_LDAP') {
-            column(name: 'CUSTOM_FILTER', type: "VARCHAR(256)", remarks: '同步用户的自定义过滤配置', afterColumn: 'OBJECT_CLASS')
+        addColumn(tableName: 'oauth_ldap') {
+            column(name: 'custom_filter', type: "VARCHAR(256)", remarks: '同步用户的自定义过滤配置', afterColumn: 'object_class')
         }
-		addColumn(tableName: 'OAUTH_LDAP') {
-            column(name: 'SAGA_BATCH_SIZE', type: "INTEGER", remarks: '同步用户每次发送saga的用户数量', afterColumn: 'CUSTOM_FILTER', defaultValue: '500') {
+		addColumn(tableName: 'oauth_ldap') {
+            column(name: 'saga_batch_size', type: "INTEGER", remarks: '同步用户每次发送saga的用户数量', afterColumn: 'custom_filter', defaultValue: '500') {
                 constraints(nullable: false)
             }
         }
-		addColumn(tableName: 'OAUTH_LDAP') {
-            column(name: 'CONNECTION_TIMEOUT', type: "INTEGER", remarks: 'ldap服务器连接超时时间，单位为秒，默认值为10秒', afterColumn: 'SAGA_BATCH_SIZE', defaultValue: '10') {
+		addColumn(tableName: 'oauth_ldap') {
+            column(name: 'connection_timeout', type: "INTEGER", remarks: 'ldap服务器连接超时时间，单位为秒，默认值为10秒', afterColumn: 'saga_batch_size', defaultValue: '10') {
                 constraints(nullable: false)
             }
         }
-		addColumn(tableName: 'OAUTH_LDAP') {
-            column(name: 'UUID_FIELD', type: "VARCHAR(64)", remarks: 'ldap中唯一标识对象的字段', afterColumn: 'CONNECTION_TIMEOUT', defaultValue: 'entryUUID') {
+		addColumn(tableName: 'oauth_ldap') {
+            column(name: 'uuid_field', type: "VARCHAR(64)", remarks: 'ldap中唯一标识对象的字段', afterColumn: 'connection_timeout', defaultValue: 'entryUUID') {
                 constraints(nullable: false)
             }
         }
-        renameColumn(columnDataType: 'VARCHAR(128)', newColumnName: "LDAP_PASSWORD", oldColumnName: "password", remarks: 'ldap登陆密码', tableName: 'OAUTH_LDAP')
+        renameColumn(columnDataType: 'VARCHAR(128)', newColumnName: "ldap_password", oldColumnName: "password", remarks: 'ldap登陆密码', tableName: 'oauth_ldap')
     }
 
 }

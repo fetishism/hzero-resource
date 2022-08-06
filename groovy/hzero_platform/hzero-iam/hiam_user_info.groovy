@@ -51,5 +51,11 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_user_info.groovy') {
         }
     }
 
+    changeSet(author: "yuhuanlong@sendpular.com", id: "2022-08-06-hiam_user_info") {
+        addColumn(tableName: 'hiam_user_info') {
+            column(name: "sec_check_phone_flag", type: "tinyint",   defaultValue:"0",   remarks: "手机是否已验证", afterColumn: 'phone_check_flag')  {constraints(nullable:"false")}
+            column(name: "sec_check_email_flag", type: "tinyint",   defaultValue:"0",   remarks: "邮箱是否已验证",afterColumn: 'email_check_flag')  {constraints(nullable:"false")}
+        }
+    }
 
 }

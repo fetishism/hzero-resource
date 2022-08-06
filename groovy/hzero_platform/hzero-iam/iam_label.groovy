@@ -27,38 +27,38 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_label.groovy') {
     }
 
     changeSet(author: 'hzero@hand-china.com', id: '2019-04-25-iam-label-add-column') {
-        addColumn(tableName: 'IAM_LABEL') {
+        addColumn(tableName: 'iam_label') {
             column(name: 'FD_LEVEL', type: "varchar(" + 32 * weight + ")", remarks: '层级') {
                 constraints(nullable: false)
             }
         }
-        addColumn(tableName: 'IAM_LABEL') {
+        addColumn(tableName: 'iam_label') {
             column(name: 'DESCRIPTION', type: "varchar(" + 128 * weight + ")", remarks: '描述')
         }
     }
     changeSet(author: 'hzero@hand-china.com', id: '2020-02-26-iam-label-add-column') {
-        addColumn(tableName: 'IAM_LABEL') {
+        addColumn(tableName: 'iam_label') {
             column(name: "enabled_flag", type: "tinyint", defaultValue: "1", remarks: "是否启用") { constraints(nullable: "false") }
         }
-        addColumn(tableName: 'IAM_LABEL') {
+        addColumn(tableName: 'iam_label') {
             column(name: "tag", type: "varchar(" + 240 * weight + ")", remarks: "标记")
         }
     }
 
     changeSet(author: 'hzero@hand-china.com', id: '2020-04-30-iam_label') {
-        addColumn(tableName: 'IAM_LABEL') {
+        addColumn(tableName: 'iam_label') {
             column(name: "inherit_flag", type: "tinyint", defaultValue: "0", remarks: "是否可继承") { constraints(nullable: "false") }
         }
-        addColumn(tableName: 'IAM_LABEL') {
+        addColumn(tableName: 'iam_label') {
             column(name: "preset_flag", type: "tinyint", defaultValue: "0", remarks: "是否内置标签，内置标签页面不可更新") { constraints(nullable: "false") }
         }
-        addColumn(tableName: 'IAM_LABEL') {
+        addColumn(tableName: 'iam_label') {
             column(name: "visible_flag", type: "tinyint", defaultValue: "1", remarks: "是否页面可见") { constraints(nullable: "false") }
         }
     }
 
     changeSet(author: 'hzero@hand-china.com', id: '2020-05-21-iam-label') {
-        addDefaultValue(tableName: 'IAM_LABEL', columnName: 'FD_LEVEL', columnDataType: "varchar(" + 32 * weight + ")",
+        addDefaultValue(tableName: 'iam_label', columnName: 'FD_LEVEL', columnDataType: "varchar(" + 32 * weight + ")",
                 defaultValue: 'SITE')
     }
 }

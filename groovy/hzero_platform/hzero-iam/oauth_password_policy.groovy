@@ -86,4 +86,17 @@ databaseChangeLog(logicalFilePath: 'script/db/oauth_password_policy.groovy') {
             column(name: "force_modify_password", type: "tinyint", defaultValue: "0", remarks: "是否强制修改初始密码")
         }
     }
+
+    changeSet(author: "yuhuanlong@sendpular.com", id: "2022-08-06-oauth_password_policy") {
+        addColumn(tableName: 'oauth_password_policy') {
+
+            column(name: "login_again", type: "tinyint",   defaultValue:"0",   remarks: "修改密码后需要重新登入", afterColumn: 'force_modify_password')  {constraints(nullable:"false")}
+            column(name: "force_code_verify", type: "tinyint",   defaultValue:"0",   remarks: "强制手机验证码校验", afterColumn: 'login_again')  {constraints(nullable:"false")}
+            column(name: "enable_three_role", type: "tinyint",   defaultValue:"0",   remarks: "启用三员管理", afterColumn: 'force_code_verify')  {constraints(nullable:"false")}
+            column(name: "enable_role_inherit", type: "tinyint",   defaultValue:"0",   remarks: "是否开启角色继承功能", afterColumn: 'enable_three_role')  {constraints(nullable:"false")}
+            column(name: "enable_role_allocate", type: "tinyint",   defaultValue:"0",   remarks: "分配给自己的角色是否允许分配给其它用户", afterColumn: 'enable_role_inherit')  {constraints(nullable:"false")}
+            column(name: "enable_role_permission", type: "tinyint",   defaultValue:"0",   remarks: "子角色是否能操作数据权限等功能", afterColumn: 'enable_role_allocate')  {constraints(nullable:"false")}
+        }
+    }
+
 }

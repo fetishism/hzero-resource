@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/groovy/hzero_admin" isTestSource="false" packagePrefix="script.db" />
+      <sourceFolder url="file://$MODULE_DIR$/groovy/hzero_file" isTestSource="false" packagePrefix="script.db" />
+      <sourceFolder url="file://$MODULE_DIR$/groovy/hzero_import" isTestSource="false" packagePrefix="script.db" />
+      <sourceFolder url="file://$MODULE_DIR$/groovy/hzero_message" isTestSource="false" packagePrefix="script.db" />
+      <sourceFolder url="file://$MODULE_DIR$/groovy/hzero_platform" isTestSource="false" packagePrefix="script.db" />
+      <sourceFolder url="file://$MODULE_DIR$/groovy/hzero_report" isTestSource="false" packagePrefix="script.db" />
+      <sourceFolder url="file://$MODULE_DIR$/groovy/hzero_scheduler" isTestSource="false" packagePrefix="script.db" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

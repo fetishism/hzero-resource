@@ -46,7 +46,7 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_user.groovy') {
     }
 
     changeSet(author: 'hzero@hand-china.com', id: '2019-04-25-rename-password-column') {
-        renameColumn(columnDataType: "VARCHAR(" + 128 * weight + ")", newColumnName: "HASH_PASSWORD", oldColumnName: "password", remarks: 'Hash后的用户密码', tableName: 'IAM_USER')
+        renameColumn(columnDataType: "VARCHAR(" + 128 * weight + ")", newColumnName: "HASH_PASSWORD", oldColumnName: "password", remarks: 'Hash后的用户密码', tableName: 'iam_user')
         dropNotNullConstraint(tableName: "iam_user", columnName: "email", columnDataType: "varchar(" + 128 * weight + ")")
     }
 	

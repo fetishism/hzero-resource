@@ -76,19 +76,19 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_menu.groovy') {
     }
 
     changeSet(author: 'hzero@hand-china.com', id: '2019-04-25-add-column') {
-        addColumn(tableName: 'IAM_MENU') {
+        addColumn(tableName: 'iam_menu') {
             column(name: 'CATEGORY', type: 'VARCHAR(64)', remarks: '项目层菜单分类，可以为AGILE，PROGRAM，ANALYTICAL')
         }
     }
 
     changeSet(author: 'hzero@hand-china.com', id: '2019-07-31-iam_menu') {
-        addColumn(tableName: 'IAM_MENU') {
+        addColumn(tableName: 'iam_menu') {
             column(name: 'h_permission_type', type: 'VARCHAR(60)', remarks: '权限控制类型列表，多种类型逗号分隔，可以为api,button,table,formItem,fields', afterColumn: 'h_controller_type', defaultValue: "api")
         }
     }
 	
 	changeSet(author: 'jiangzhou.bo@hand-china.com', id: '2019-08-12-iam_menu') {
-		modifyDataType(tableName: "IAM_MENU", columnName: 'h_level_path', newDataType: "varchar(768)")
+		modifyDataType(tableName: "iam_menu", columnName: 'h_level_path', newDataType: "varchar(768)")
     }
 
     changeSet(author: 'hzero@hand-china.com', id: '2019-10-25-iam_menu'){
@@ -102,7 +102,7 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_menu.groovy') {
 	changeSet(author: 'jiangzhou.bo@hand-china.com', id: '2019-11-28-iam_menu') {
 		dropIndex(tableName: "iam_menu", indexName: "iam_menu_n2")
 		
-		modifyDataType(tableName: "IAM_MENU", columnName: 'h_level_path', newDataType: "varchar(700)")
+		modifyDataType(tableName: "iam_menu", columnName: 'h_level_path', newDataType: "varchar(700)")
 		
 		createIndex(tableName: "iam_menu", indexName: "iam_menu_n2") {
             column(name: "type")

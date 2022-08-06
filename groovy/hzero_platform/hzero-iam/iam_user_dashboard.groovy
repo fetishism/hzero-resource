@@ -3,11 +3,11 @@ package script.db
 databaseChangeLog(logicalFilePath: 'script/db/iam_user_dashboard.groovy') {
     changeSet(author: 'fan@choerodon.io', id: '2018-07-23-iam-user-dashboard') {
         if(helper.dbType().isSupportSequence()){
-            createSequence(sequenceName: 'IAM_USER_DASHBOARD_S', startValue:"1")
+            createSequence(sequenceName: 'iam_user_dashboard_s', startValue:"1")
         }
-        createTable(tableName: "IAM_USER_DASHBOARD") {
+        createTable(tableName: "iam_user_dashboard") {
             column(name: 'ID', type: 'BIGINT', autoIncrement: true, remarks: '表ID，主键，供其他表做外键，unsigned bigint、单表时自增、步长为 1') {
-                constraints(primaryKey: true, primaryKeyName: 'PK_IAM_USER_DASHBOARD')
+                constraints(primaryKey: true, primaryKeyName: 'pk_iam_user_dashboard')
             }
             column(name: 'USER_ID', type: 'BIGINT', remarks: 'user id') {
                 constraints(nullable: true)
@@ -41,11 +41,11 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_user_dashboard.groovy') {
     }
 
     changeSet(author: 'superleader8@gmail.com', id: '2018-08-28-rename') {
-        renameColumn(columnDataType: 'VARCHAR(64)', newColumnName: "FD_LEVEL", oldColumnName: "LEVEL", remarks: '层级：site / organization / project', tableName: 'IAM_USER_DASHBOARD')
+        renameColumn(columnDataType: 'VARCHAR(64)', newColumnName: "fd_level", oldColumnName: "level", remarks: '层级：site / organization / project', tableName: 'iam_user_dashboard')
     }
 
     changeSet(author: 'hzero@hand-china.com', id: '2019-04-25-add-column-positionDTO') {
-        addColumn(tableName: 'IAM_USER_DASHBOARD') {
+        addColumn(tableName: 'iam_user_dashboard') {
             column(name: 'POSITION', type: "VARCHAR(128)", remarks: '仪表盘位置')
         }
     }
@@ -53,7 +53,7 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_user_dashboard.groovy') {
     changeSet(id: '2019-08-12-iam_user_dashboard', author: 'jiangzhou.bo@hand-china.com') {
         dropTable(tableName: 'iam_user_dashboard')
         if (helper.dbType().isSupportSequence()) {
-            dropSequence(sequenceName: 'IAM_USER_DASHBOARD_S')
+            dropSequence(sequenceName: 'iam_user_dashboard_s')
         }
     }
 }
